@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeriCheck Dashboard</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; max-width: 800px; }
+        .result { margin-top: 1rem; padding: 1rem; border: 1px solid #ccc; background: #f9f9f9; }
+        input[type="text"] { width: 100%; padding: 0.5rem; margin-bottom: 1rem; }
+        button { padding: 0.5rem 1rem; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <h1>VeriCheck Dashboard</h1>
+    <p>Enter a vernacular claim below to verify it against the facts database.</p>
+
+    <input type="text" id="claimInput" placeholder="Enter claim text here...">
+    <button onclick="verifyClaim()">Verify Claim</button>
+
+    <div id="result" class="result" style="display:none;">
+        <h3>Verdict Result</h3>
+        <pre id="jsonOutput"></pre>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
