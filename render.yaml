@@ -1,0 +1,45 @@
+services:
+  # 1. FastAPI Web Service (Dockerized to include Node.js for MCP)
+  - type: web
+    name: vericheck-api
+    env: docker
+    dockerfilePath: ./Dockerfile.api
+    dockerCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vericheck-db
+          property: connectionString
+      - key: REDIS_URL
+        sync: false # Create a managed Redis instance in Render Dashboard and paste the Internal URL here.
+      - key: ANTHROPIC_API_KEY
+        sync: false # Set this in the Render dashboard manually
+
+  # 2. Redis Message Queue Worker (Dockerized)
+  - type: worker
+    name: vericheck-worker
+    env: docker
+    dockerfilePath: ./Dockerfile.api
+    dockerCommand: "PYTHONPATH=. python backend/worker.py"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vericheck-db
+          property: connectionString
+      - key: REDIS_URL
+        sync: false # Matches above
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+  # 3. Frontend Static Site
+  - type: web
+    name: vericheck-frontend
+    env: static
+    buildCommand: "" # No build needed for pure HTML/JS
+    staticPublishPath: "./frontend"
+
+databases:
+  # 4. PostgreSQL Database
+  - name: vericheck-db
+    plan: free # Change if needed
+    postgresMajorVersion: "16" # Ensure latest version for pgvector support

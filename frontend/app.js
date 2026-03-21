@@ -1,4 +1,7 @@
-const API_BASE_URL = 'http://127.0.0.1:8000';
+// Dynamically set API_BASE_URL for Render.com deployment vs. local testing
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://127.0.0.1:8000'
+    : 'https://vericheck-api.onrender.com'; // Replace with your actual Render API URL
 
 async function verifyClaim() {
     const claimInput = document.getElementById('claimInput').value;

@@ -12,7 +12,6 @@ import os
 import json
 from anthropic import Anthropic
 
-from backend.db import get_db, init_db, Fact
 from backend.retrieval import RetrievalSystem
 from backend.mcp_client import scrape_url_mcp
 from backend.task_queue import push_to_queue
