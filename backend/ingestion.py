@@ -2,7 +2,7 @@ import time
 import datetime
 import uuid
 import random
-from backend.queue import push_to_queue
+from backend.task_queue import push_to_queue
 
 # Mock news feed to simulate social media / RSS stream
 mock_feed = [

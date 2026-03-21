@@ -1,12 +1,20 @@
 import time
-from backend.queue import pop_from_queue
-from backend.db import get_db
-from backend.main import get_verdict, ClaimRequest
+from backend.task_queue import pop_from_queue
+from backend.db import get_db, init_db, Fact
+from backend.main import get_verdict, ClaimRequest, retrieval_system
 
 def process_queue():
-    print("Worker started. Listening to VeriCheck queue...")
-    # Initialize DB connection generator
-    db_gen = get_db()
+    print("Worker started. Initializing systems...")
+    init_db()
+
+    # Load facts into memory just like FastAPI startup
+    db = next(get_db())
+    facts = db.query(Fact).all()
+    if facts:
+        retrieval_system.load_facts(facts)
+    db.close()
+
+    print("Listening to VeriCheck queue...")
 
     while True:
         try:

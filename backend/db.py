@@ -19,7 +19,12 @@ class Fact(Base):
     date = Column(Date)
     embedding = Column(Vector(384)) # matching sentence-transformers miniLM output dimension
 
+from sqlalchemy import text
+
 def init_db():
+    with engine.connect() as conn:
+        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+        conn.commit()
     Base.metadata.create_all(bind=engine)
 
 def get_db():
