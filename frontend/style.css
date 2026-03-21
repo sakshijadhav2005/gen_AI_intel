@@ -1,0 +1,237 @@
+:root {
+    --bg-dark: #121212;
+    --bg-darker: #0a0a0a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+
+    --primary-color: #4facfe;
+    --secondary-color: #00f2fe;
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    --neo-shadow-light: #1f1f1f;
+    --neo-shadow-dark: #050505;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Glassmorphism Container */
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    background: -webkit-linear-gradient(var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Neomorphism Input */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.neo-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.neo-input {
+    width: 100%;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    box-shadow: inset 5px 5px 10px var(--neo-shadow-dark),
+                inset -5px -5px 10px var(--neo-shadow-light);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.neo-input:focus {
+    box-shadow: inset 2px 2px 5px var(--neo-shadow-dark),
+                inset -2px -2px 5px var(--neo-shadow-light);
+}
+
+/* Neomorphism Buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.neo-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px var(--neo-shadow-dark),
+                -5px -5px 10px var(--neo-shadow-light);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.neo-button:hover {
+    color: var(--primary-color);
+}
+
+.neo-button:active {
+    box-shadow: inset 5px 5px 10px var(--neo-shadow-dark),
+                inset -5px -5px 10px var(--neo-shadow-light);
+}
+
+.neo-button.primary {
+    color: var(--secondary-color);
+}
+
+.neo-button.small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Result Cards - Glassmorphism */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.verdict-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.badge.TRUE { background: rgba(46, 204, 113, 0.2); color: #2ecc71; border: 1px solid #2ecc71; }
+.badge.FALSE { background: rgba(231, 76, 60, 0.2); color: #e74c3c; border: 1px solid #e74c3c; }
+.badge.MISLEADING { background: rgba(241, 196, 15, 0.2); color: #f1c40f; border: 1px solid #f1c40f; }
+.badge.UNVERIFIABLE { background: rgba(149, 165, 166, 0.2); color: #95a5a6; border: 1px solid #95a5a6; }
+.badge.PENDING { background: rgba(52, 152, 219, 0.2); color: #3498db; border: 1px solid #3498db; }
+
+.result-details {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.explanation-section, .evidence-section {
+    margin-top: 1.5rem;
+}
+
+.explanation-section h4, .evidence-section h4 {
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+}
+
+.evidence-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.evidence-item {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.evidence-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+pre {
+    background: #000;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #4facfe;
+}
+
+/* Loader */
+.loader-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--glass-border);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

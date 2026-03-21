@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+sqlalchemy
+pgvector
+psycopg2-binary
+sentence-transformers
+faiss-cpu
+rank_bm25
+redis
+kafka-python-ng
+pydantic-settings
+asyncio
+spacy
+fasttext
+mcp
+anthropic

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeriCheck Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1><i class="fa-solid fa-shield-halved"></i> VeriCheck</h1>
+            <p>Automated Fact-Checker for Vernacular News</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <div class="neo-input-wrapper">
+                    <input type="text" id="claimInput" class="neo-input" placeholder="Enter a vernacular claim to verify...">
+                </div>
+
+                <div class="action-buttons">
+                    <button id="verifyBtn" class="neo-button primary" onclick="verifyClaim()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Verify Claim
+                    </button>
+                    <button class="neo-button secondary" onclick="scrapeUrl()">
+                        <i class="fa-solid fa-globe"></i> Scrape URL (MCP)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loader -->
+            <div id="loader" class="loader-container" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processing pipeline...</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="result" class="glass-card result-card" style="display:none;">
+                <div class="verdict-header">
+                    <h3>Verdict Result</h3>
+                    <span id="verdictLabel" class="badge">PENDING</span>
+                </div>
+
+                <div class="result-details">
+                    <div class="detail-item">
+                        <strong><i class="fa-solid fa-percent"></i> Confidence:</strong>
+                        <span id="confidenceScore">0%</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong><i class="fa-solid fa-layer-group"></i> Tier Reached:</strong>
+                        <span id="tierReached">0</span>
+                    </div>
+                </div>
+
+                <div class="explanation-section">
+                    <h4><i class="fa-solid fa-comment-dots"></i> Explanation</h4>
+                    <p id="explanationText">Waiting for explanation...</p>
+                </div>
+
+                <div class="evidence-section">
+                    <h4><i class="fa-solid fa-file-contract"></i> Matched Evidence</h4>
+                    <div id="evidenceList" class="evidence-list">
+                        <!-- Evidence items will be injected here -->
+                    </div>
+                </div>
+
+                <div class="json-toggle">
+                    <button class="neo-button small" onclick="toggleJson()">
+                        <i class="fa-solid fa-code"></i> Raw JSON Response
+                    </button>
+                    <pre id="jsonOutput" style="display: none;"></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
