@@ -5,7 +5,7 @@ services:
     image: ankane/pgvector:v0.5.1
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-default_password}
       POSTGRES_DB: vericheck
     ports:
       - "5432:5432"

@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from pgvector.sqlalchemy import Vector
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/vericheck")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:default_password@localhost:5432/vericheck")
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
